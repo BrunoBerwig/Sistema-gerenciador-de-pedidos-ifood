@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Print - Caixa</title>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Atendente</a>
+                    <a href="cozinha.html" class="nav-link">Cozinha</a>
+                    <a href="caixa.html" class="nav-link">Caixa</a>
+                    <a href="gerencia.html" class="nav-link">Gerência</a>
+                </nav>
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M7 9h10v6H7z"/>
+                    </svg>
+                    <h1>Smart Print - Caixa</h1>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Desconectado</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content single-column">
+            <div class="card">
+                <div class="card-header">
+                    <h2>💵 Pedidos Prontos para Cobrança</h2>
+                    <p class="card-subtitle">Recebidos da Cozinha (Status: PRONTO)</p>
+                </div>
+                <div id="cashierOrdersContainer" class="items-list order-grid">
+                    <div class="empty-state" id="emptyStateCaixa">
+                        <p>Nenhum pedido pronto. Aguardando a Cozinha...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+    <script src="caixa.js"></script>
+</body>
+</html>

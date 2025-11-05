@@ -1,0 +1,577 @@
+/* =======================================================
+   1. VARIÁVEIS, RESET E TIPOGRAFIA
+   ======================================================= */
+   :root {
+    /* Paleta de Cores */
+    --primary: #4f46e5;       /* Índigo para botões e destaque */
+    --secondary: #6b7280;     /* Cinza para textos secundários */
+    --success: #10b981;       /* Verde para sucesso/pronto */
+    --danger: #ef4444;        /* Vermelho para erros/finalizar */
+    --background: #f9fafb;    /* Fundo principal (quase branco) */
+    --card-bg: #ffffff;       /* Fundo do card */
+    --border-color: #e5e7eb;  /* Cor da borda suave */
+    
+    /* Cores de Cinza */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-700: #374151;
+    --gray-900: #111827;
+
+    /* Spacing (Base 8px) */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 32px;
+    
+    /* Radius and Shadow */
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--gray-900);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl) var(--spacing-xxl);
+}
+
+/* =======================================================
+   2. ESTILOS DE COMPONENTES BÁSICOS
+   ======================================================= */
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    gap: var(--spacing-sm);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--card-bg);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #4338ca; /* Índigo um pouco mais escuro */
+}
+
+.btn-secondary {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--gray-200);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: var(--card-bg);
+}
+
+.btn-success:hover:not(:disabled) {
+    background-color: #059669;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Cards (Contêineres Principais) */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
+    height: 100%; /* Garante que os cards na grid preencham o espaço */
+}
+
+.card-header {
+    border-bottom: 1px solid var(--gray-100);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-top: -5px;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* Estado Vazio */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xxl) 0;
+    color: var(--secondary);
+    font-style: italic;
+    border: 2px dashed var(--gray-100);
+    border-radius: var(--radius-md);
+}
+
+
+/* =======================================================
+   3. LAYOUT PRINCIPAL (HEADER E MAIN)
+   ======================================================= */
+
+.header {
+    padding: var(--spacing-xl) 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Status de Conexão MQTT */
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--danger); /* Default: Desconectado */
+    transition: background-color 0.3s;
+}
+
+.status-connected .status-dot {
+    background-color: var(--success);
+}
+
+.status-connected .status-text {
+    color: var(--success);
+}
+
+/* Layout de Duas Colunas para o Atendente (index.html) */
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Itens (2/3) | Carrinho (1/3) */
+    gap: var(--spacing-xxl);
+}
+
+/* Layout de Coluna Única para Cozinha/Caixa/Gerencia */
+.main-content.single-column {
+    display: block;
+}
+
+
+/* =======================================================
+   4. ESTILOS ESPECÍFICOS DO ATENDENTE (index.html)
+   ======================================================= */
+
+/* Grid de Itens do Cardápio */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.menu-item-card {
+    background-color: var(--gray-50);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.item-name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.item-price {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Carrinho de Compras */
+.cart-card {
+    position: sticky;
+    top: var(--spacing-xxl); /* Mantém o carrinho visível */
+}
+
+.cart-title {
+    font-size: 1.1rem;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--gray-100);
+}
+
+.items-list {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px dashed var(--gray-100);
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.quantity-btn {
+    background: var(--gray-100);
+    border: 1px solid var(--border-color);
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.item-qty-display {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--gray-200);
+}
+
+.total-value {
+    color: var(--danger);
+}
+
+/* =======================================================
+   5. ESTILOS COZINHA E CAIXA (order-grid)
+   ======================================================= */
+
+.order-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.order-card-kitchen,
+.order-card-cashier {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.order-card-kitchen {
+    border-left: 5px solid var(--primary); /* Destaque para pedido em preparo */
+}
+
+.order-card-cashier {
+    border-left: 5px solid var(--success); /* Destaque para pedido pronto */
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.order-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.order-client {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.order-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Para empurrar o botão para baixo */
+}
+
+.order-items-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px dashed var(--gray-100);
+}
+
+.item-qty {
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: var(--spacing-sm);
+}
+
+.order-card-cashier .total-value-large {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--danger);
+    display: block;
+    text-align: right;
+    margin: var(--spacing-md) 0;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: var(--spacing-lg);
+}
+
+/* =======================================================
+   6. ESTILOS DA GERÊNCIA (Tabela)
+   ======================================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.transaction-table th, .transaction-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--gray-100);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.transaction-table th {
+    background: var(--gray-50);
+    font-weight: 600;
+    color: var(--gray-700);
+    border-top: 1px solid var(--border-color);
+}
+
+.transaction-table tbody tr:hover {
+    background: var(--gray-50);
+}
+
+/* Status visuais na tabela */
+.transaction-table tr:first-child {
+    font-weight: bold; /* Destaca a transação mais recente */
+}
+
+
+/* =======================================================
+   7. TOAST NOTIFICATIONS
+   ======================================================= */
+
+.toast-container {
+    position: fixed;
+    top: var(--spacing-xxl);
+    right: var(--spacing-xxl);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.toast {
+    background-color: var(--card-bg);
+    color: var(--gray-900);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border-left: 5px solid;
+    max-width: 300px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-success {
+    border-left-color: var(--success);
+}
+
+.toast-info {
+    border-left-color: var(--primary);
+}
+
+.toast-error {
+    border-left-color: var(--danger);
+}
+
+
+/* =======================================================
+   8. MEDIA QUERIES (Responsividade)
+   ======================================================= */
+
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Muda para coluna única em telas pequenas */
+    }
+
+    .cart-summary-area {
+        margin-top: var(--spacing-xl);
+    }
+    
+    .cart-card {
+        position: static; /* Remove o sticky na visualização móvel */
+    }
+
+    .container {
+        padding: 0 var(--spacing-lg) var(--spacing-xl);
+    }
+    
+    .toast-container {
+        top: auto;
+        bottom: var(--spacing-xl);
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        max-width: 90%;
+    }
+}
+
+.nav-menu {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--gray-100);
+    display: flex;
+    gap: var(--spacing-xxl);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 500;
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+.nav-link.active { 
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}

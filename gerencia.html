@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Print - Gerência</title>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Atendente</a>
+                    <a href="cozinha.html" class="nav-link">Cozinha</a>
+                    <a href="caixa.html" class="nav-link">Caixa</a>
+                    <a href="gerencia.html" class="nav-link">Gerência</a>
+                </nav>
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3v18h18"/><path d="M18 17V9.5a2.5 2.5 0 0 0-5 0V17"/><path d="M12 12V6.5a2.5 2.5 0 0 0-5 0V12"/>
+                    </svg>
+                    <h1>Smart Print - Gerência</h1>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Desconectado</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content single-column">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📊 Log de Transações MQTT</h2>
+                    <p class="card-subtitle">Monitoramento em tempo real de todos os tópicos (senai/iot/#)</p>
+                </div>
+                <div class="table-container">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Tópico</th>
+                                <th>ID Pedido</th>
+                                <th>Mesa</th>
+                                <th>Ação/Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionLogTable">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+    <script src="gerencia.js"></script>
+</body>
+</html>

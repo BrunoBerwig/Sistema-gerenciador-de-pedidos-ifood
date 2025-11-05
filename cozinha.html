@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Print - Cozinha</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Atendente</a>
+                    <a href="cozinha.html" class="nav-link">Cozinha</a>
+                    <a href="caixa.html" class="nav-link">Caixa</a>
+                    <a href="gerencia.html" class="nav-link">Gerência</a>
+                </nav>
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-8h2v-4h-2v4zm0 6h2v-2h-2v2z"/>
+                    </svg>
+                    <h1>Smart Print - Cozinha</h1>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Desconectado</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content single-column">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 Pedidos em Preparo</h2>
+                    <p class="card-subtitle">Recebidos do Atendente via MQTT</p>
+                </div>
+                <div id="kitchenOrdersContainer" class="items-list order-grid">
+                    <div class="empty-state" id="emptyStateCozinha">
+                        <p>Nenhum pedido novo no momento. Aguardando...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+    <script src="cozinha.js"></script>
+</body>
+</html>

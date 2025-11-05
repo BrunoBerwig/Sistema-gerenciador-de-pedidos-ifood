@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Print - Atendente</title>
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Atendente</a>
+                    <a href="cozinha.html" class="nav-link">Cozinha</a>
+                    <a href="caixa.html" class="nav-link">Caixa</a>
+                    <a href="gerencia.html" class="nav-link">Gerência</a>
+                </nav>
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm-4 12c.71-.24 1.48-.41 2.28-.41h3.44c.8 0 1.57.17 2.28.41C15.82 17.57 14 18 12 18s-3.82-.43-5.06-1.56z"/>
+                    </svg>
+                    <h1>Smart Print - Atendente</h1>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Desconectado</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <div class="item-selection-area">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🍔 Cardápio e Itens</h2>
+                    </div>
+                    <div id="menuItemsContainer" class="menu-grid">
+                        </div>
+                </div>
+            </div>
+
+            <div class="cart-summary-area">
+                <div class="card cart-card">
+                    <div class="card-header">
+                        <h2>🛒 Novo Pedido</h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mesaInput">Mesa / Quarto</label>
+                        <input type="number" id="mesaInput" placeholder="Ex: 5 ou 101" required value="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="clienteInput">Nome do Cliente (Opcional)</label>
+                        <input type="text" id="clienteInput" placeholder="Ex: João Silva">
+                    </div>
+
+                    <h3 class="cart-title">Itens no Pedido:</h3>
+                    <div id="cartItemsContainer" class="items-list">
+                        <div class="empty-state">
+                            <p>O carrinho está vazio. Adicione itens.</p>
+                        </div>
+                    </div>
+
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cartTotalValue" class="total-value">R$ 0,00</span>
+                    </div>
+
+                    <button id="sendOrderButton" class="btn btn-primary full-width" onclick="sendOrder()" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l7-7-7-7"/><path d="M5 12h14"/>
+                        </svg>
+                        Enviar Pedido (Imprimir Comanda)
+                    </button>
+                    <button class="btn btn-secondary full-width" onclick="clearCart()">
+                        Limpar Carrinho
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
